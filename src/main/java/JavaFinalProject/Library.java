@@ -3,8 +3,10 @@
  */
 package JavaFinalProject;
 
-public class Library {
-    public boolean someLibraryMethod() {
+public class Library 
+{
+    public boolean someLibraryMethod() 
+    {
         return true;
     }
 }
