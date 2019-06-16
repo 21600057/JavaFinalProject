@@ -15,7 +15,6 @@ import java.io.File;
 import org.apache.commons.compress.archivers.zip.ZipArchiveEntry;
 import org.apache.commons.compress.archivers.zip.ZipFile;
 
-import JavaFinalProject.NotEnoughArgumentException;
 
 public class ZipReader 
 {
@@ -23,20 +22,9 @@ public class ZipReader
 	
 	public void run(String[] args)
 	{
-		try
-		{
-			if(args.length<2)
-			 throw new NotEnoughArgumentException();
-			
-		} catch (NotEnoughArgumentException e)
-		{
-			System.out.println(e.getMessage());
-			System.exit(0);
-		}
-		
 		path1 = args[0];
 		path2 = args[1];
-		
+		readFileInZip(path1);
 	}
 
 	public void readFileInZip(String path) 
