@@ -15,7 +15,7 @@ import java.io.File;
 import org.apache.commons.compress.archivers.zip.ZipArchiveEntry;
 import org.apache.commons.compress.archivers.zip.ZipFile;
 
-import edu.handong.analysise.utils.NotEnoughArgumentException;
+import JavaFinalProject.NotEnoughArgumentException;
 
 public class ZipReader 
 {
