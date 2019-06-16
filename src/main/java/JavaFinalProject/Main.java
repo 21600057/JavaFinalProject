@@ -20,6 +20,12 @@ public class Main
 	
 	public static void main(String[] args) 
 	{ 
+		Main finalMain = new Main();
+		finalMain.run(args);
+	}
+	
+	public void run(String[] args)
+	{
 		try
 		{
 			if(args.length<2 || args.length >=3)
@@ -41,8 +47,6 @@ public class Main
 				return;
 			}
 		}
-//		ZipReader zipReader = new ZipReader();
-//		zipReader.run(args);
 	}
 	
 	public boolean parseOptions(Options options, String[] args) 
