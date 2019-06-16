@@ -14,24 +14,12 @@ import org.apache.commons.compress.archivers.zip.ZipFile;
 
 public class Main 
 {
-	String path1, path2; // 읽을 파일 경로와 써질 파일.
 	
 	public static void main(String[] args) 
 	{ 
-
-		Main main = new Main();
-		main.run(args);
+		ZipReader zipReader = new ZipReader();
+		zipReader.run(args);
 	}
-	
-	public void run(String[] args)
-	{
-		path1 = args[0];
-		path2 = args[1];
 		
-		System.out.println("path1 = " + path1);
-	}
-	
-	
-	
 }
  

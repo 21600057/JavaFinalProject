@@ -4,28 +4,45 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Enumeration;
 
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.DefaultParser;
+import org.apache.commons.cli.HelpFormatter;
+import org.apache.commons.cli.Option;
+import org.apache.commons.cli.Options;
+import java.io.File;
+
 import org.apache.commons.compress.archivers.zip.ZipArchiveEntry;
 import org.apache.commons.compress.archivers.zip.ZipFile;
 
+import edu.handong.analysise.utils.NotEnoughArgumentException;
+
 public class ZipReader 
 {
-
-	public static void main(String[] args) 
+	String path1, path2;
+	
+	public void run(String[] args)
 	{
-		ZipReader zipReader = new ZipReader();
-		zipReader.run(args);
-	}
-
-	private void run(String[] args) 
-	{
-		//String path = args[0];
+		try
+		{
+			if(args.length<2)
+			 throw new NotEnoughArgumentException();
+			
+		} catch (NotEnoughArgumentException e)
+		{
+			System.out.println(e.getMessage());
+			System.exit(0);
+		}
 		
-		readFileInZip("0001.zip");
+		path1 = args[0];
+		path2 = args[1];
 		
 	}
 
 	public void readFileInZip(String path) 
 	{
+		System.out.println("여기는 함수부");
+		/*
 		ZipFile zipFile;
 		try 
 		{
@@ -48,6 +65,6 @@ public class ZipReader
 		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 	}
 }
