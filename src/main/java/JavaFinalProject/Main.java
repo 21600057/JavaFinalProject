@@ -15,13 +15,14 @@ public class Main
 	public static void main(String[] args) 
 	{ 
 
-		Main finalStart = new Main();
-		finalStart.run(args);
+		Main finalMain = new Main();
+		finalMain.run(args);
 	}
 	
-	public void run(args)
+	public void run(String[] args)
 	{
-		
+		path1 = args[0];
+		path2 = args[1];
 	}
 	
 }
