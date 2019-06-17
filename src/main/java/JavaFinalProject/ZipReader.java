@@ -60,6 +60,7 @@ public class ZipReader extends Thread
 		    while(entries.hasMoreElements())
 		    {
 		    	ZipArchiveEntry entry = entries.nextElement();
+		    	
 		    	InputStream stream = zipFile.getInputStream(entry);
 		    	temp.addAll(myReader.getData(stream));
 		    }
@@ -71,6 +72,19 @@ public class ZipReader extends Thread
 			// TODO Auto-generated catch block
 			System.out.println("There is no input Path!");
 			e.printStackTrace();
+		} catch (NullPointerException e)
+		{
+			System.out.println("There is NullPointerException Error!");
+			e.printStackTrace();
 		}
+	}
+	
+	public int getID()
+	{
+		int id;
+		String convertId;
+		convertId = path1.substring(0,4);
+		id = Integer.parseInt(convertId);
+		return id;
 	}
 }
