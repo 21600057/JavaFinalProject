@@ -2,17 +2,12 @@ package JavaFinalProject;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.util.Enumeration;
 import java.util.ArrayList;
 import JavaFinalProject.Utils;
 
-import org.apache.commons.cli.CommandLine;
-import org.apache.commons.cli.CommandLineParser;
-import org.apache.commons.cli.DefaultParser;
-import org.apache.commons.cli.HelpFormatter;
-import org.apache.commons.cli.Option;
-import org.apache.commons.cli.Options;
-import java.io.File;
+import java.io.FileNotFoundException;
 
 import org.apache.commons.compress.archivers.zip.ZipArchiveEntry;
 import org.apache.commons.compress.archivers.zip.ZipFile;
@@ -55,7 +50,6 @@ public class ZipReader extends Thread
 	        
 	        ArrayList<String> temp = new ArrayList<String>();
 		    ExcelReader myReader = new ExcelReader();
-		    //Library lib = new Library();
 		    
 		    while(entries.hasMoreElements())
 		    {
@@ -76,6 +70,19 @@ public class ZipReader extends Thread
 		{
 			System.out.println("There is NullPointerException Error!");
 			e.printStackTrace();
+			
+			PrintWriter fileOut = null;
+			try
+			{
+				fileOut = new PrintWriter("error.csv");
+			} catch (FileNotFoundException w)
+			{
+				System.out.println("Error opening the file");
+				System.exit(0);
+			}
+				fileOut.println(path1);
+			
+			fileOut.close();
 		}
 	}
 	
