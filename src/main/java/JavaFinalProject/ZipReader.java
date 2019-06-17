@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Enumeration;
 
+import JavaFinalProject.Utils;
+
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
@@ -26,7 +28,7 @@ public class ZipReader
 		try
 		{
 			if(argck == false)
-			 throw new NotEnoughArgumentException(); // argument가 부족할시 throw해줌
+			 throw new NotEnoughArgumentException(); // inputPath 와 outputPath를 설정해주지 않았다면, error message 출력 
 			
 		} catch (NotEnoughArgumentException e)
 		{
@@ -47,10 +49,12 @@ public class ZipReader
 		    
 		        ExcelReader myReader = new ExcelReader();
 		        
-		        for(String value:myReader.getData(stream)) 
+		        Utils ut = new Utils();
+		        ut.writeAFile(myReader.getData(stream), path2);
+/*		        for(String value:myReader.getData(stream)) 
 		        {
 		        	System.out.println(value);
-		        }
+		        }*/
 		    }
 		} catch (IOException e) 
 		{

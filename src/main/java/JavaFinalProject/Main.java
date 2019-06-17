@@ -16,47 +16,34 @@ import JavaFinalProject.NotEnoughArgumentException;
 public class Main 
 {
 	String path1, path2;
+	boolean argck=false;
 	boolean help;
 	
 	public static void main(String[] args) 
-	{ 
+	{
 		Main finalMain = new Main();
 		finalMain.run(args);
 	}
 	
 	public void run(String[] args)
-	{
-		try
-		{
-			if(args.length<2)
-			 throw new NotEnoughArgumentException(); // argument가 부족할시 throw해줌
-			
-		} catch (NotEnoughArgumentException e)
-		{
-			System.out.println(e.getMessage());
-			System.exit(0);
-		}
-		
+	{	
 		Options options = createOptions();
-		
 		
 		if(parseOptions(options, args))
 		{
-			System.out.println("Path1 = " + path1);
-			System.out.println("Path2 = " + path2);
-			
-			ZipReader readZipFile = new ZipReader();
-			readZipFile.readFileInZip(path1);
-			
 			if (help)
 			{
 				printHelp(options);
 				return;
 			}
 			
-			
+			ZipReader readZipFile = new ZipReader();
+			readZipFile.readFileInZip(path1,path2,argck);
 		}
+	
 	}
+	
+	
 	
 	public boolean parseOptions(Options options, String[] args) 
 	{
@@ -66,10 +53,14 @@ public class Main
 		{
 
 			CommandLine cmd = parser.parse(options, args);
-
+			
 			path1 = cmd.getOptionValue("i");
 			path2 = cmd.getOptionValue("o");
-		
+			
+			if (path1 != null && path2 != null)
+				argck=true;
+
+			
 			help = cmd.hasOption("h");
 
 		} catch (Exception e) 
