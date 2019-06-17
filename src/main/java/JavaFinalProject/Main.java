@@ -23,6 +23,8 @@ public class Main
 	{
 		Main finalMain = new Main();
 		finalMain.run(args);
+		Thread t = new ZipReader();
+		t.start();
 	}
 	
 	public void run(String[] args)
@@ -42,8 +44,6 @@ public class Main
 		}
 	
 	}
-	
-	
 	
 	public boolean parseOptions(Options options, String[] args) 
 	{

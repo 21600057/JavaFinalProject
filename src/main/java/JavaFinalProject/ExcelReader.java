@@ -12,7 +12,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
-public class ExcelReader 
+public class ExcelReader
 {	
 	public ArrayList<String> getData(InputStream is) 
 	{
@@ -46,12 +46,6 @@ public class ExcelReader
 		        			 if (cell.getStringCellValue().contains(","))
 		        			 {
 		        				 temp = temp + "\"" + cell.getStringCellValue() + "\"" + ",";
-		        				 break;
-		        			 }
-		        			 if (cell.getStringCellValue() == null)
-		        			 {
-		        				 System.out.println("공백을 발견했다.");
-		        				 temp = temp + ",";
 		        				 break;
 		        			 }
 		        			 

@@ -3,7 +3,7 @@ package JavaFinalProject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Enumeration;
-
+import java.util.ArrayList;
 import JavaFinalProject.Utils;
 
 import org.apache.commons.cli.CommandLine;
@@ -18,13 +18,22 @@ import org.apache.commons.compress.archivers.zip.ZipArchiveEntry;
 import org.apache.commons.compress.archivers.zip.ZipFile;
 
 
-public class ZipReader 
+public class ZipReader extends Thread
 {
-	String path1, path2;
+	static String path1, path2;
+	static boolean argck;
 
 	public void readFileInZip(String path1, String path2, boolean argck) 
 	{
+		this.path1 = path1;
+		this.path2 = path2;
+		this.argck = argck;
+	}
+	
+	public void run()
+	{
 		System.out.println("ÇÔ¼öºÎ");
+		System.out.println("path1 = " + path1 + "path2 = " + path2 + "argck = " + argck);
 		try
 		{
 			if(argck == false)
@@ -42,21 +51,20 @@ public class ZipReader
 			Utils ut = new Utils();   
 			zipFile = new ZipFile(path1);
 			Enumeration<? extends ZipArchiveEntry> entries = zipFile.getEntries();
-			ZipArchiveEntry entry;
-	        InputStream stream;
+			
 	        
+	        ArrayList<String> temp = new ArrayList<String>();
+		    ExcelReader myReader = new ExcelReader();
+		    //Library lib = new Library();
+		    
 		    while(entries.hasMoreElements())
 		    {
-		    	entry = entries.nextElement();
-		        stream = zipFile.getInputStream(entry);
-		    
-		        /*for(String value:myReader.getData(stream)) 
-		        {
-		        	System.out.println(value);
-		        }*/
+		    	ZipArchiveEntry entry = entries.nextElement();
+		    	InputStream stream = zipFile.getInputStream(entry);
+		    	temp.addAll(myReader.getData(stream));
 		    }
-		    ExcelReader myReader = new ExcelReader();
-	        ut.writeAFile(myReader.getData(stream), path2);
+
+		    ut.writeAFile(temp, path2);
 	        
 		} catch (IOException e) 
 		{
