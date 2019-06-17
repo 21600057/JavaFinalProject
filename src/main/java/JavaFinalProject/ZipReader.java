@@ -39,23 +39,25 @@ public class ZipReader
 		ZipFile zipFile;
 		try 
 		{
+			Utils ut = new Utils();   
 			zipFile = new ZipFile(path1);
 			Enumeration<? extends ZipArchiveEntry> entries = zipFile.getEntries();
-
+			ZipArchiveEntry entry;
+	        InputStream stream;
+	        
 		    while(entries.hasMoreElements())
 		    {
-		    	ZipArchiveEntry entry = entries.nextElement();
-		        InputStream stream = zipFile.getInputStream(entry);
+		    	entry = entries.nextElement();
+		        stream = zipFile.getInputStream(entry);
 		    
-		        ExcelReader myReader = new ExcelReader();
-		        
-		        Utils ut = new Utils();
-		        ut.writeAFile(myReader.getData(stream), path2);
-/*		        for(String value:myReader.getData(stream)) 
+		        /*for(String value:myReader.getData(stream)) 
 		        {
 		        	System.out.println(value);
 		        }*/
 		    }
+		    ExcelReader myReader = new ExcelReader();
+	        ut.writeAFile(myReader.getData(stream), path2);
+	        
 		} catch (IOException e) 
 		{
 			// TODO Auto-generated catch block
