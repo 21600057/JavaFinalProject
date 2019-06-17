@@ -33,7 +33,7 @@ public class ZipReader extends Thread
 	public void run()
 	{
 		System.out.println("ÇÔ¼öºÎ");
-		System.out.println("path1 = " + path1 + "path2 = " + path2 + "argck = " + argck);
+		System.out.println("path1 = " + path1 + " path2 = " + path2 + " argck = " + argck);
 		try
 		{
 			if(argck == false)
