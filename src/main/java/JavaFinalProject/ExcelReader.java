@@ -20,25 +20,27 @@ public class ExcelReader
 		
 		try (InputStream inp = is) 
 		{
-		    
+		    	ZipReader zipreader = new ZipReader();
 		        Workbook wb = WorkbookFactory.create(inp);
 		        
 		        Sheet sheet = wb.getSheetAt(0);
 		        Row row;
 		        Cell cell;
 		        int numRow = sheet.getPhysicalNumberOfRows();
-		         String temp = "";
+		        String temp = "";
 		        
 		        for (int i=0; i<numRow; i++)
 		        {
 		        	row = sheet.getRow(i);
+		        	temp = zipreader.getID() + ",";
+	        		
 		        	for (int j=0; j<row.getPhysicalNumberOfCells(); j++)
 		        	{
 		        		cell = row.getCell(j);
 		        		switch(cell.getCellType())
 		        		{
 		        			case NUMERIC:
-		        			 temp = temp + Double.toString((int)cell.getNumericCellValue()) + ",";
+		        			 temp = temp + Double.toString(cell.getNumericCellValue()) + ",";
 		        			 //values.add(Double.toString((int)cell.getNumericCellValue()));
 		        			 break;
 		        		
@@ -48,9 +50,18 @@ public class ExcelReader
 		        				 temp = temp + "\"" + cell.getStringCellValue() + "\"" + ",";
 		        				 break;
 		        			 }
+		        			 if (cell.getStringCellValue().contains("\n"))
+		        			 {
+		        				 temp = temp + "\"" + cell.getStringCellValue() + "\"" + ",";
+		        				 break;
+		        			 }
 		        			 
 		        			  temp = temp + cell.getStringCellValue() + ",";
 		        			 
+		        			 break;
+		        			 
+		        			case BLANK:
+		        			 temp = temp + ",";
 		        			 break;
 		        		
 		        			default:
