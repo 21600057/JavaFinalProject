@@ -27,6 +27,7 @@ public class ExcelReader
 		        Row row;
 		        Cell cell;
 		        int numRow = sheet.getPhysicalNumberOfRows();
+		         String temp = "";
 		        
 		        for (int i=0; i<numRow; i++)
 		        {
@@ -37,17 +38,33 @@ public class ExcelReader
 		        		switch(cell.getCellType())
 		        		{
 		        			case NUMERIC:
-		        			 values.add(Double.toString((int)cell.getNumericCellValue()));
+		        			 temp = temp + Double.toString((int)cell.getNumericCellValue()) + ",";
+		        			 //values.add(Double.toString((int)cell.getNumericCellValue()));
 		        			 break;
 		        		
 		        			case STRING:
-		        			 values.add(cell.getStringCellValue());
+		        			 if (cell.getStringCellValue().contains(","))
+		        			 {
+		        				 temp = temp + "\"" + cell.getStringCellValue() + "\"" + ",";
+		        				 break;
+		        			 }
+		        			 if (cell.getStringCellValue() == null)
+		        			 {
+		        				 System.out.println("공백을 발견했다.");
+		        				 temp = temp + ",";
+		        				 break;
+		        			 }
+		        			 
+		        			  temp = temp + cell.getStringCellValue() + ",";
+		        			 
 		        			 break;
 		        		
 		        			default:
 		        			 break;
 		        		}
 		        	}
+		        	values.add(temp);
+	        		temp = "";
 		        }
 		        
 		        
