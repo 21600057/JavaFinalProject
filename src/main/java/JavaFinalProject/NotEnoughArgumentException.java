@@ -1,5 +1,6 @@
 package JavaFinalProject;
 
+@SuppressWarnings("serial")
 public class NotEnoughArgumentException extends Exception
 {
 		
