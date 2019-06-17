@@ -19,21 +19,25 @@ import org.apache.commons.compress.archivers.zip.ZipFile;
 public class ZipReader 
 {
 	String path1, path2;
-	
-	public void run(String[] args)
-	{
-		path1 = args[0];
-		path2 = args[1];
-	}
 
-	public void readFileInZip(String path) 
+	public void readFileInZip(String path1, String path2, boolean argck) 
 	{
-		System.out.println("여기는 함수부");
-		/*
+		System.out.println("함수부");
+		try
+		{
+			if(argck == false)
+			 throw new NotEnoughArgumentException(); // argument가 부족할시 throw해줌
+			
+		} catch (NotEnoughArgumentException e)
+		{
+			System.out.println(e.getMessage());
+			System.exit(0);
+		}
+		
 		ZipFile zipFile;
 		try 
 		{
-			zipFile = new ZipFile(path);
+			zipFile = new ZipFile(path1);
 			Enumeration<? extends ZipArchiveEntry> entries = zipFile.getEntries();
 
 		    while(entries.hasMoreElements())
@@ -51,7 +55,8 @@ public class ZipReader
 		} catch (IOException e) 
 		{
 			// TODO Auto-generated catch block
+			System.out.println("There is no input Path!");
 			e.printStackTrace();
-		}*/
+		}
 	}
 }
