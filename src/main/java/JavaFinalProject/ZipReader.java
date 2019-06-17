@@ -24,7 +24,6 @@ public class ZipReader
 	{
 		path1 = args[0];
 		path2 = args[1];
-		readFileInZip(path1);
 	}
 
 	public void readFileInZip(String path) 

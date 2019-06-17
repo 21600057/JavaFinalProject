@@ -19,20 +19,27 @@ public class ExcelReader
 	{
 		ArrayList<String> values = new ArrayList<String>();
 		
-		System.out.println(path);
-		
-		try (InputStream inp = new FileInputStream(path)) 
+		try (InputStream inp = is) 
 		{
-		    //InputStream inp = new FileInputStream("workbook.xlsx");
+		    InputStream inp = new FileInputStream("workbook.xlsx");
 		    
 		        Workbook wb = WorkbookFactory.create(inp);
-		        Sheet sheet = wb.getSheetAt(0);
-		        Row row = sheet.getRow(2);
-		        Cell cell = row.getCell(1);
-		        if (cell == null)
-		            cell = row.createCell(3);
 		        
-		        values.add(cell.getStringCellValue());
+		        Sheet sheet = wb.getSheetAt(0);
+		        Row row;
+		        Cell cell;
+		        int numRow = sheet.getPhysicalNumberOfRows();
+		        
+		        for (int i=0; i<numRow; i++)
+		        {
+		        	row = sheet.getRow(i);
+		        	for (int j=0; j<row.getPhysicalNumberOfCells(); j++)
+		        	{
+		        		cell = row.getCell(j);
+				        values.add(cell.getStringCellValue());
+		        	}
+		        }
+		        
 		        
 		    } catch (FileNotFoundException e) 
 		{
@@ -46,7 +53,7 @@ public class ExcelReader
 		
 		return values;
 	}
-	
+	/*
 	public ArrayList<String> getData(InputStream is) 
 	{
 		ArrayList<String> values = new ArrayList<String>();
@@ -56,13 +63,21 @@ public class ExcelReader
 		    //InputStream inp = new FileInputStream("workbook.xlsx");
 		    
 		        Workbook wb = WorkbookFactory.create(inp);
-		        Sheet sheet = wb.getSheetAt(0);
-		        Row row = sheet.getRow(2);
-		        Cell cell = row.getCell(1);
-		        if (cell == null)
-		            cell = row.createCell(3);
 		        
-		        values.add(cell.getStringCellValue());
+		        Sheet sheet = wb.getSheetAt(0);
+		        Row row;
+		        Cell cell;
+		        int numRow = sheet.getPhysicalNumberOfRows();
+		        
+		        for (int i=0; i<numRow; i++)
+		        {
+		        	row = sheet.getRow(i);
+		        	for (int j=0; j<row.getPhysicalNumberOfCells(); j++)
+		        	{
+		        		cell = row.getCell(j);
+				        values.add(cell.getStringCellValue());
+		        	}
+		        }
 		        
 		        
 		    } catch (FileNotFoundException e) 
@@ -76,5 +91,5 @@ public class ExcelReader
 		}
 		
 		return values;
-	}
+	}*/
 }

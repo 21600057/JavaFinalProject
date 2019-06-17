@@ -15,7 +15,7 @@ import JavaFinalProject.NotEnoughArgumentException;
 
 public class Main 
 {
-	String path;
+	String path1, path2;
 	boolean help;
 	
 	public static void main(String[] args) 
@@ -28,7 +28,7 @@ public class Main
 	{
 		try
 		{
-			if(args.length<2 || args.length >=3)
+			if(args.length<2)
 			 throw new NotEnoughArgumentException(); // argument가 부족할시 throw해줌
 			
 		} catch (NotEnoughArgumentException e)
@@ -39,13 +39,23 @@ public class Main
 		
 		Options options = createOptions();
 		
+		ZipReader readZipFile = new ZipReader();
+		readZipFile.readFileInZip(path1);
+		
+		//ExcelReader readExcelFile = new ExcelReader();
+		//readExcelFile.getData(path1);
 		if(parseOptions(options, args))
 		{
+			System.out.println("Path1 = " + path1);
+			System.out.println("Path2 = " + path2);
+			
 			if (help)
 			{
 				printHelp(options);
 				return;
 			}
+			
+			
 		}
 	}
 	
@@ -58,7 +68,9 @@ public class Main
 
 			CommandLine cmd = parser.parse(options, args);
 
-			path = cmd.getOptionValue("p");
+			path1 = cmd.getOptionValue("i");
+			path2 = cmd.getOptionValue("o");
+		
 			help = cmd.hasOption("h");
 
 		} catch (Exception e) 
@@ -76,12 +88,18 @@ public class Main
 		Options options = new Options();
 
 		// add options by using OptionBuilder
-		options.addOption(Option.builder("p").longOpt("path")
-				.desc("Set a path of a directory or a file to display")
+		options.addOption(Option.builder("i").longOpt("inputPath")
+				.desc("Set a inputPath of a directory or a file to display")
 				.hasArg()
-				.argName("Path name to display")
-				.required()
+				.argName("inputPath name to display")
 				.build());
+		
+		// add options by using OptionBuilder
+				options.addOption(Option.builder("o").longOpt("outputPath")
+						.desc("Set a outputPath of a directory or a file to display")
+						.hasArg()
+						.argName("outputPath name to display")
+						.build());
 			
 		// add options by using OptionBuilder
 		options.addOption(Option.builder("h").longOpt("help")
