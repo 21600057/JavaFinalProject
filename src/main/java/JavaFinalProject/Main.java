@@ -39,15 +39,14 @@ public class Main
 		
 		Options options = createOptions();
 		
-		ZipReader readZipFile = new ZipReader();
-		readZipFile.readFileInZip(path1);
 		
-		//ExcelReader readExcelFile = new ExcelReader();
-		//readExcelFile.getData(path1);
 		if(parseOptions(options, args))
 		{
 			System.out.println("Path1 = " + path1);
 			System.out.println("Path2 = " + path2);
+			
+			ZipReader readZipFile = new ZipReader();
+			readZipFile.readFileInZip(path1);
 			
 			if (help)
 			{
