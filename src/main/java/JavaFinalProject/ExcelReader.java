@@ -40,7 +40,6 @@ public class ExcelReader
 		        		{
 		        			case NUMERIC:
 		        			 temp = temp + Double.toString(cell.getNumericCellValue()) + ",";
-		        			 //values.add(Double.toString((int)cell.getNumericCellValue()));
 		        			 break;
 		        		
 		        			case STRING:
@@ -55,8 +54,7 @@ public class ExcelReader
 		        				 break;
 		        			 }
 		        			 
-		        			  temp = temp + cell.getStringCellValue() + ",";
-		        			 
+		        			 temp = temp + cell.getStringCellValue() + ",";
 		        			 break;
 		        			 
 		        			case BLANK:
@@ -71,14 +69,11 @@ public class ExcelReader
 	        		temp = "";
 		        }
 		        
-		        
 		} catch (FileNotFoundException e) 
 		{
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 		} catch (IOException e) 
 		{
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 		}
 		
