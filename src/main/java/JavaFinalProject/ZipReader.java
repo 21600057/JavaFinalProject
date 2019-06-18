@@ -12,7 +12,6 @@ import java.io.FileNotFoundException;
 import org.apache.commons.compress.archivers.zip.ZipArchiveEntry;
 import org.apache.commons.compress.archivers.zip.ZipFile;
 
-
 public class ZipReader extends Thread
 {
 	static String path1, path2;
@@ -27,12 +26,10 @@ public class ZipReader extends Thread
 	
 	public void run()
 	{
-		System.out.println("함수부");
-		System.out.println("path1 = " + path1 + " path2 = " + path2 + " argck = " + argck);
 		try
 		{
 			if(argck == false)
-			 throw new NotEnoughArgumentException(); // inputPath 와 outputPath를 설정해주지 않았다면, error message 출력 
+			 throw new NotEnoughArgumentException(); 
 			
 		} catch (NotEnoughArgumentException e)
 		{
@@ -41,12 +38,12 @@ public class ZipReader extends Thread
 		}
 		
 		ZipFile zipFile;
+		
 		try 
 		{
 			Utils ut = new Utils();   
 			zipFile = new ZipFile(path1);
 			Enumeration<? extends ZipArchiveEntry> entries = zipFile.getEntries();
-			
 	        
 	        ArrayList<String> temp = new ArrayList<String>();
 		    ExcelReader myReader = new ExcelReader();
@@ -54,17 +51,13 @@ public class ZipReader extends Thread
 		    while(entries.hasMoreElements())
 		    {
 		    	ZipArchiveEntry entry = entries.nextElement();
-		    	
 		    	InputStream stream = zipFile.getInputStream(entry);
 		    	temp.addAll(myReader.getData(stream));
 		    }
-
 		    ut.writeAFile(temp, path2);
 	        
-		} catch (IOException e) 
+		} catch (IOException e)
 		{
-			// TODO Auto-generated catch block
-			System.out.println("There is no input Path!");
 			e.printStackTrace();
 		} catch (NullPointerException e)
 		{

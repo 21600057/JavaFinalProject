@@ -36,7 +36,6 @@ public class Main
 			ZipReader readZipFile = new ZipReader();
 			readZipFile.readFileInZip(path1,path2,argck);
 		}
-	
 	}
 	
 	public boolean parseOptions(Options options, String[] args) 
@@ -45,7 +44,6 @@ public class Main
 
 		try 
 		{
-
 			CommandLine cmd = parser.parse(options, args);
 			
 			path1 = cmd.getOptionValue("i");
@@ -53,7 +51,6 @@ public class Main
 			
 			if (path1 != null && path2 != null)
 				argck=true;
-
 			
 			help = cmd.hasOption("h");
 
@@ -66,26 +63,22 @@ public class Main
 		return true;
 	}
 	
-	// Definition Stage
 	public Options createOptions() 
 	{
 		Options options = new Options();
 
-		// add options by using OptionBuilder
 		options.addOption(Option.builder("i").longOpt("inputPath")
 				.desc("Set a inputPath of a directory or a file to display")
 				.hasArg()
 				.argName("inputPath name to display")
 				.build());
 		
-		// add options by using OptionBuilder
-				options.addOption(Option.builder("o").longOpt("outputPath")
-						.desc("Set a outputPath of a directory or a file to display")
-						.hasArg()
-						.argName("outputPath name to display")
-						.build());
+		options.addOption(Option.builder("o").longOpt("outputPath")
+				.desc("Set a outputPath of a directory or a file to display")
+				.hasArg()
+				.argName("outputPath name to display")
+				.build());
 			
-		// add options by using OptionBuilder
 		options.addOption(Option.builder("h").longOpt("help")
 		        .desc("Help")
 		        .build());
@@ -94,12 +87,10 @@ public class Main
 		
 	public void printHelp(Options options) 
 	{
-		// automatically generate the help statement
 		HelpFormatter formatter = new HelpFormatter();
 		String header = "Helper";
 		String footer ="\nPlease report issues at https://github.com/lifove/CLIExample/issues";
 		formatter.printHelp("CLIExample", header, options, footer, true);
 	}
-		
 }
  
