@@ -41,7 +41,7 @@ public class ZipReader extends Thread
 		
 		try 
 		{
-			Utils ut = new Utils();   
+			Utils ut = new Utils(); 
 			zipFile = new ZipFile(path1);
 			Enumeration<? extends ZipArchiveEntry> entries = zipFile.getEntries();
 	        
@@ -81,7 +81,7 @@ public class ZipReader extends Thread
 	
 	public int getID()
 	{
-		int id;
+		int id; 
 		String convertId;
 		convertId = path1.substring(0,4);
 		id = Integer.parseInt(convertId);
