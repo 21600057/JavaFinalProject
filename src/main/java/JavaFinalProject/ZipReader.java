@@ -20,7 +20,7 @@ public class ZipReader extends Thread
 	public void readFileInZip(String path1, String path2, boolean argck) 
 	{
 		this.path1 = path1;
-		this.path2 = path2;
+		this.path2 = path2; 
 		this.argck = argck;
 	}
 	

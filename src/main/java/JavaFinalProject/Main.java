@@ -89,8 +89,8 @@ public class Main
 	{
 		HelpFormatter formatter = new HelpFormatter();
 		String header = "Helper";
-		String footer ="\nPlease report issues at https://github.com/lifove/CLIExample/issues";
-		formatter.printHelp("CLIExample", header, options, footer, true);
+		String footer ="\nPlease read the help message and retry!";
+		formatter.printHelp("JavaFinalProject", header, options, footer, true);
 	}
 }
  

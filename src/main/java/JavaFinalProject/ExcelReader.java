@@ -13,7 +13,7 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 public class ExcelReader
 {
-	public ArrayList<String> getData(InputStream is) 
+	public ArrayList<String> getData(InputStream is)
 	{
 		ArrayList<String> values = new ArrayList<String>();
 		
